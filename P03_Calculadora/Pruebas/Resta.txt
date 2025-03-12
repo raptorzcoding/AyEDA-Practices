@@ -1,0 +1,24 @@
+FUNCIÓN resta_clasica(A, B):
+    SI A < B ENTONCES
+        ERROR: "No se admiten números negativos en BigUnsigned"
+        RETORNAR NULL
+
+    CREAR lista resultado
+    borrow ← 0
+
+    PARA i DESDE 0 HASTA tamaño_máximo(A, B) - 1 HACER:
+        digitA ← dígito i de A (o 0 si no existe)
+        digitB ← dígito i de B (o 0 si no existe)
+
+        digitA ← digitA - borrow  # Aplicar el préstamo si hay uno
+
+        SI digitA < digitB ENTONCES
+            digitA ← digitA + 10  # Tomar prestado de la siguiente posición
+            borrow ← 1
+        SINO
+            borrow ← 0
+
+        resultado.agregar(digitA - digitB)
+
+    REMOVER ceros a la izquierda en resultado
+    RETORNAR resultado
